@@ -63,7 +63,7 @@ let computerScore = 0;
 for(i = 1; i < 6; i++){  
     let roundOutcome = playGame();
     console.log("Player Score= " + playerScore);
-    console.log(" Computer Score= " + computerScore);
+    console.log("Computer Score= " + computerScore);
     if(i === 5){
         if(playerScore > computerScore){
             console.log("Player Wins!");
