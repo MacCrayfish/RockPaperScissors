@@ -2,21 +2,21 @@
 function computerChoice(){
     let number = Math.floor (Math.random() * 3);
     if(number === 0){
-        return "rock";
+        return "Rock";
     } else if (number === 1){
-        return "paper";
+        return "Paper";
     } else {
-        return "scissors";
+        return "Scissors";
     }
 }
 
-function playerChoice(lowercase){
-    if(lowercase === "rock"){
-        return "rock";
-    } else if(lowercase === "paper"){
-        return "paper";
-    } else if (lowercase === "scissors"){
-        return "scissors";
+function playerChoice(choiceLowercase){
+    if(choiceLowercase === "rock"){
+        return "Rock";
+    } else if(choiceLowercase === "paper"){
+        return "Paper";
+    } else if (choiceLowercase === "scissors"){
+        return "Scissors";
     } else {
         console.log("Please input a valid option");
         return null;
@@ -26,26 +26,53 @@ function playerChoice(lowercase){
 function playRound(player, computer){
     if(player === computer){
         return "draw";
-    } else if ((player === "rock" && computer === "scissors") || (player === "paper" && computer === "rock") || (player === "scissors" && computer === "paper")) {
-        return "win";
+    } else if ((player === "Rock" && computer === "Scissors") || (player === "Paper" && computer === "Rock") || (player === "Scissors" && computer === "Paper")) {
+        return "wins";
     } else {
-        return "lose";
+        return "loses";  
     }
 }
 
+function playGame(){
+    let choice = prompt("Rock Paper or Scissors?");
+    let choiceLowercase = choice.toLowerCase();
+    let playerOutcome = playerChoice(choiceLowercase);
+    let computerOutcome = computerChoice();
+    let result = playRound(playerOutcome, computerOutcome);
+
+    if(playerOutcome !== null){
+        console.log("Player sent " + playerOutcome);
+        console.log("Computer sent " + computerOutcome);
+        if(result === "wins"){
+            playerScore++;
+            console.log(playerOutcome + " beats " + computerOutcome + "! Congratulations!");
+        } else if(result === "loses"){
+            computerScore++;
+            console.log(computerOutcome + " beats " + playerOutcome + "! Better luck next time.");
+        }
+            console.log("Player " + result);
+    } else {
+        console.log("Invalid");
+    }
+        
+}
 let playerScore = 0;
 let computerScore = 0;
 
-let choice = prompt("Rock Paper or Scissors?");
-let choiceLowercase = choice.toLowerCase();
-let playerOutcome = playerChoice(choiceLowercase);
-let computerOutcome = computerChoice();
 
-if(playerOutcome !== null){
-    console.log(playerChoice(choiceLowercase));
-    console.log(computerOutcome);
-    let result = playRound(playerOutcome, computerOutcome);
-    console.log(result);
-} else {
-    console.log("Invalid");
+for(i = 1; i < 6; i++){  
+    let roundOutcome = playGame();
+    console.log("Player Score= " + playerScore);
+    console.log(" Computer Score= " + computerScore);
+    if(i === 5){
+        if(playerScore > computerScore){
+            console.log("Player Wins!");
+        } else if (computerScore > playerScore){
+            console.log("Computer Wins!");
+        } else{
+            console.log("Draw!");
+        }
+    }
 }
+        
+
