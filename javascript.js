@@ -1,3 +1,7 @@
+let playerScore = 0;
+let computerScore = 0;
+let result;
+let i = 1;
 
 function computerChoice(){
     let number = Math.floor (Math.random() * 3);
@@ -7,19 +11,6 @@ function computerChoice(){
         return "Paper";
     } else {
         return "Scissors";
-    }
-}
-
-function playerChoice(choiceLowercase){
-    if(choiceLowercase === "rock"){
-        return "Rock";
-    } else if(choiceLowercase === "paper"){
-        return "Paper";
-    } else if (choiceLowercase === "scissors"){
-        return "Scissors";
-    } else {
-        console.log("Please input a valid option");
-        return null;
     }
 }
 
@@ -33,35 +24,24 @@ function playRound(player, computer){
     }
 }
 
-function playGame(){
-    let choice = prompt("Rock Paper or Scissors?");
-    let choiceLowercase = choice.toLowerCase();
-    let playerOutcome = playerChoice(choiceLowercase);
+function playGame(playerOutcome){
     let computerOutcome = computerChoice();
-    let result = playRound(playerOutcome, computerOutcome);
+    result = playRound(playerOutcome, computerOutcome);
 
-    if(playerOutcome !== null){
-        console.log("Player sent " + playerOutcome);
-        console.log("Computer sent " + computerOutcome);
-        if(result === "wins"){
-            playerScore++;
-            console.log(playerOutcome + " beats " + computerOutcome + "! Congratulations!");
-        } else if(result === "loses"){
-            computerScore++;
-            console.log(computerOutcome + " beats " + playerOutcome + "! Better luck next time.");
-        }
-            console.log("Player " + result);
-    } else {
-        console.log("Invalid");
+    console.log("Player sent " + playerOutcome);
+    console.log("Computer sent " + computerOutcome);
+    if(result === "wins"){
+        playerScore++;
+        console.log(playerOutcome + " beats " + computerOutcome + "! Congratulations!");
+    } else if(result === "loses"){
+        computerScore++;
+        console.log(computerOutcome + " beats " + playerOutcome + "! Better luck next time.");
     }
-        
+    console.log("Player " + result);   
 }
-let playerScore = 0;
-let computerScore = 0;
 
-
-for(i = 1; i < 6; i++){  
-    let roundOutcome = playGame();
+function btnPress(btn){  
+    let roundOutcome = playGame(btn);
     console.log("Player Score= " + playerScore);
     console.log("Computer Score= " + computerScore);
     if(i === 5){
@@ -72,7 +52,39 @@ for(i = 1; i < 6; i++){
         } else{
             console.log("Draw!");
         }
+        playerScore = 0;
+        computerScore = 0;
+        i = 1;
     }
-}
-        
 
+    playerScoreTxt.textContent = playerScore;
+    computerScoreTxt.textContent = computerScore;
+    const container = document.querySelector('#container');
+    const roundState = document.createElement("h1");
+    roundState.textContent = "Player " + result;
+    container.appendChild(roundState);
+    setTimeout(() => {
+        roundState.remove()
+    }, 1000);
+    i++;
+}
+
+const playerScoreTxt = document.querySelector("#playerScore");
+
+const computerScoreTxt = document.querySelector('#computerScore');
+
+
+const rockBtn = document.querySelector("#rock");
+rockBtn.addEventListener("mouseup", () => {
+    btnPress("Rock");
+});
+
+const paperBtn = document.querySelector("#paper");
+paperBtn.addEventListener("mouseup", () => {
+    btnPress("Paper");
+});
+
+const scissorsBtn = document.querySelector("#scissors");
+scissorsBtn.addEventListener("mouseup", () => {
+    btnPress("Scissors");
+});
