@@ -1,0 +1,64 @@
+body {
+    
+    background-color: burlywood;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+    width: 90%;
+}
+
+.computerChoice,
+button {
+    display: flex;
+    background-color: brown;
+    border: 1px, solid, rgb(82, 17, 17);
+    margin: 3px;
+    height: 30px;
+    width: 30%;
+}
+
+.computerChoice {
+    width: fit-content;
+}
+
+.sides {
+    display: flex;
+    justify-content: space-around;
+
+    
+}
+
+.computerSide,
+.playerSide{
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    box-sizing: border-box;
+    width: 50%;
+    height: auto;
+    background-color: beige;
+    margin: 6px;
+}
+
+#computerScore,
+#playerScore{
+    font-size: 64px;
+    margin: 5px
+}
+
+.computerSide{
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+}
+
+#container {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

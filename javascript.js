@@ -2,6 +2,7 @@ let playerScore = 0;
 let computerScore = 0;
 let result;
 let i = 1;
+let computerOutcome;
 
 function computerChoice(){
     let number = Math.floor (Math.random() * 3);
@@ -25,7 +26,7 @@ function playRound(player, computer){
 }
 
 function playGame(playerOutcome){
-    let computerOutcome = computerChoice();
+    computerOutcome = computerChoice();
     result = playRound(playerOutcome, computerOutcome);
 
     console.log("Player sent " + playerOutcome);
@@ -41,7 +42,7 @@ function playGame(playerOutcome){
 }
 
 function btnPress(btn){  
-    let roundOutcome = playGame(btn);
+    playGame(btn);
     console.log("Player Score= " + playerScore);
     console.log("Computer Score= " + computerScore);
     if(i === 5){
@@ -66,6 +67,8 @@ function btnPress(btn){
     setTimeout(() => {
         roundState.remove()
     }, 1000);
+    const computerState = document.querySelector(".computerChoice");
+    computerState.textContent = "Computer Chose " + computerOutcome;
     i++;
 }
 
